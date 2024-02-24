@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from '@/components/ui/button'
 import { projectData } from '@/data';
+import Image from 'next/image';
 
 
 type CardObject = {
@@ -23,6 +24,7 @@ const TabCardWrapper = ({ item }: CardProps) => {
 
     return (
         <Card className='w-80 bg-primary-foreground dark:bg-primary-foreground'>
+            <Image src="https://res.cloudinary.com/dreeqkcfb/image/upload/v1708800683/pp0xe1n3ndgfyv9tfvkz.png" alt='...' width={400} height={300} />
             <CardHeader>
                 <CardTitle>{item.name}</CardTitle>
                 <CardDescription>

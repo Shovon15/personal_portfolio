@@ -10,7 +10,8 @@ import { ThemeToggle } from "@/components/themeProvider/themeToggle";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
-import logo from "../../../../public/logo/logo-no-background.png"
+import logo from "../../../../public/logo/logo-no-background.png";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
@@ -18,8 +19,8 @@ const ClientNav = (props: Props) => {
     const paths = usePathname();
     const pathNames = paths.split("/").filter((path) => path || "");
     const currentPathName = `/${pathNames.slice(0, pathNames.length + 1).join("/")}`;
-    // console.log(currentPathName, "current path");
 
+    const { user } = useSelector((state: any) => state.auth);
 
     return (
         <nav className="bg-primary-foreground border-b border-gray-200 w-full sticky top-0 z-[9]">
@@ -47,12 +48,24 @@ const ClientNav = (props: Props) => {
                         </div>
                     ))}
                 </div>
-                <div className="hidden  gap-2  md:flex">
-                    <Link href="/dashboard">
-                        <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" />
-                            <AvatarFallback>CN</AvatarFallback>
-                        </Avatar></Link>
+                <div className="hidden md:flex gap-2">
+                    {
+                        user && (
+                            <>
+                                <Link href="dashboard">
+                                    <Avatar>
+                                        {user?.avatar?.url ? (
+                                            <AvatarImage src={user.avatar.url} />
+                                        ) : user?.name ? (
+                                            <AvatarFallback>{user?.name.slice(0, 2)}</AvatarFallback>
+                                        ) : (
+                                            <AvatarFallback></AvatarFallback>
+                                        )}
+                                    </Avatar>
+                                </Link>
+                            </>
+                        )
+                    }
                     <ThemeToggle />
                 </div>
                 <ClientMobileSidebar />
