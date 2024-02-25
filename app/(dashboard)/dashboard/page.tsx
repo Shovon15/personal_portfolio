@@ -3,11 +3,15 @@ import { Button } from "@/components/ui/button";
 import { DashboardWrapper } from "../_components/dashboardWrapper";
 import Link from "next/link";
 import { useLogoutMutation } from "@/redux/feature/auth/authApi";
+import { useRouter } from "next/navigation";
 
 const DashboardPage = () => {
     const [logout, { isSuccess, isError }] = useLogoutMutation();
+
+    const router = useRouter();
     const handleLogout = async () => {
         await logout({});
+        router.push('/login');
     };
     return (
         <DashboardWrapper>
