@@ -9,14 +9,12 @@ const nextConfig = {
 				headers: [
 					// Allow for specific domains to have access or * for all
 					{
-						key: "Access-Control-Allow-Crediantials",
+						key: "Access-Control-Allow-Credentials",
 						value: "true",
 					},
 					{
 						key: "Access-Control-Allow-Origin",
-						// value: "*",
-						// DOES NOT WORK
-						value: process.env.NEXT_PUBLIC_SERVER_URL,
+						value: "*",
 					},
 					// Allows for specific methods accepted
 					{
@@ -38,5 +36,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
-
