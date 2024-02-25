@@ -14,9 +14,9 @@ const nextConfig = {
 					},
 					{
 						key: "Access-Control-Allow-Origin",
-						value: "*",
+						// value: "*",
 						// DOES NOT WORK
-						// value: process.env.ALLOWED_ORIGIN,
+						value: process.env.NEXT_PUBLIC_SERVER_URL,
 					},
 					// Allows for specific methods accepted
 					{

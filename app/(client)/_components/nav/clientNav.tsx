@@ -25,7 +25,8 @@ const ClientNav = (props: Props) => {
     return (
         <nav className="bg-primary-foreground border-b border-gray-200 w-full sticky top-0 z-[9]">
             <div className="max-w-screen-2xl h-16 mx-auto flex justify-between items-center md:px-5 px-10 ">
-                <Image src={logo} alt="logo" width={160} height={30} />
+                <h1 className={cn("text-primary/90")}>Shovon Mahamud</h1>
+                {/* <Image src={logo} alt="logo" width={160} height={30} /> */}
                 <div className="hidden md:flex gap-3">
                     {docsConfig.mainNav.map(({ href, title, disabled }) => (
                         <div key={href} className="">

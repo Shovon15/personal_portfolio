@@ -22,28 +22,14 @@ export const RegisterSchema = z.object({
 	}),
 });
 
-export const StudentSchema = z.object({
-    nameEng: z.string().min(1, {
+export const ProjectSchema = z.object({
+    name: z.string().min(1, {
         message: "Name is required",
     }),
 
-    nameBan: z.string().min(1, {
-        message: "Name is required",
+    category: z.string().min(1, {
+        message: "category is required",
     }),
 
-    bloodGroup: z.optional(z.string()),
-
-    religion: z.string().min(1, {
-        message: "Select a option",
-    }),
-    
-    applicationNo: z.optional(z.string()),
 });
 
-export const SearchSchema = z.object({
-    class: z.string().min(1, {
-        message: "select a class",
-    }),
-    group: z.optional(z.string()),
-    section: z.optional(z.string()),
-});
