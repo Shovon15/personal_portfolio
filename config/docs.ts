@@ -43,7 +43,7 @@ export const docsConfig: DocsConfig = {
         },
         {
             title: "contact",
-            href: "/contact",
+            href: "/hire-me",
         },
     ],
     sidebarNav: [
@@ -109,21 +109,6 @@ export const docsConfig: DocsConfig = {
             title: "Node Js",
             value: "node_js",
             disabled: false
-        },
-        {
-            title: "Tailwind Css",
-            value: "tailwind_css",
-            disabled: false
-        },
-        {
-            title: "Front End",
-            value: "frontend",
-            disabled: false
-        },
-        {
-            title: "express js",
-            value: "express_js",
-            disabled: true
-        },
+        }
     ]
 }

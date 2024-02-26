@@ -24,7 +24,7 @@ type CardProps = {
 }
 
 const TabCardWrapper = ({ item }: CardProps) => {
-    console.log(item, "item.image")
+    // console.log(item, "item.image")
     return (
         <Card className='w-80 bg-primary-foreground dark:bg-primary-foreground'>
             <Image src={item?.images[0]} alt='...' width={400} height={300} />

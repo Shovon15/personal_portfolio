@@ -35,11 +35,12 @@ const ClientMobileSidebar = (props: Props) => {
                     <ScrollArea className="my-4 h-[calc(100vh-3rem)] pb-10 ">
                         <div className='space-y-3 pr-5'>
                             {docsConfig.mainNav.map(({ href, title, disabled }) => (
-                                <div key={href} className="border border-red-500 py-2 bg-green-500 flex justify-center items-center">
+                                <div key={href} className="border  py-2 flex justify-center items-center">
                                     {!disabled &&
                                         (href ? (
                                             <MainNavLink
                                                 href={href}
+                                            onOpenChange={setOpen}
                                                 className={cn(
 
                                                     `${currentPathName === href

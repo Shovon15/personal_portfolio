@@ -10,7 +10,7 @@ import { ThemeToggle } from "@/components/themeProvider/themeToggle";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
-import logo from "../../../../public/logo/logo-no-background.png";
+import logo from "../../../../public/logo/coding.png";
 import { useSelector } from "react-redux";
 
 type Props = {};
@@ -25,7 +25,10 @@ const ClientNav = (props: Props) => {
     return (
         <nav className="bg-primary-foreground border-b border-gray-200 w-full sticky top-0 z-[9]">
             <div className="max-w-screen-2xl h-16 mx-auto flex justify-between items-center md:px-5 px-10 ">
-                <h1 className={cn("text-primary/90")}>Shovon Mahamud</h1>
+                <div className="flex justify-center items-center gap-2">
+                    <Image src={logo} alt="logo" width={30} height={30} />
+                    <h1 className={cn("text-primary/90 font-bold")}>Shovon Mahamud</h1>
+                </div>
                 {/* <Image src={logo} alt="logo" width={160} height={30} /> */}
                 <div className="hidden md:flex gap-3">
                     {docsConfig.mainNav.map(({ href, title, disabled }) => (
