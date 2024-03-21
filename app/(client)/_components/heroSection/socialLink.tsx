@@ -13,7 +13,7 @@ const SocialLink = () => {
         },
         {
             title: "linkedin",
-            link: "link",
+            link: "https://linkedin.com/in/shovon-mahamud-profile",
             icon: linkedinIcon,
         },
     ]
@@ -22,9 +22,9 @@ const SocialLink = () => {
             {
                 Data.map((item) => (
                     <div key={item.title}>
-                        <Link href={item.link} target="_blank" passHref={true} rel="noopener noreferrer">
+                        <a href={item.link} target="_blank" rel="noopener noreferrer">
                             <Image src={item.icon} width={30} height={30} alt='icon' />
-                        </Link>
+                        </a>
                     </div>
                 ))
             }
