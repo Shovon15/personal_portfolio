@@ -51,7 +51,7 @@ export const LoginForm = (props: Props) => {
                 Cookies.set("token", userToken);
                 fetchData();
                 setSuccess(successMessage);
-                router.push('/deshboard');
+                router.push('/dashboard');
         }
 
         } catch (error: any) {
