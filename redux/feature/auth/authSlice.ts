@@ -31,9 +31,11 @@ const authSlice = createSlice({
         },
         userLogedIn: (state, action: PayloadAction<{ accessToken: string, user: object }>) => {
             state.token = action.payload.accessToken;
-            state.user = action.payload.user;
+            // state.user = action.payload.user;
+            localStorage.setItem('token', action.payload.accessToken); 
         },
         userLogedOut: (state, action) => {
+            localStorage.removeItem('token');
             return initialState;
         },
     }

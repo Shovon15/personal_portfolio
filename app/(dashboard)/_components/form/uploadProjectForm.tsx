@@ -16,16 +16,16 @@ import { ProjectSchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { InputFieldWrapper } from "@/components/formFieldWrapper/inputFieldWrapper";
 import SelectFieldWrapper from "@/components/formFieldWrapper/selectFieldWrapper";
-import { useGetCategoryQuery } from "@/redux/feature/category/categoryApi";
-import { useSelector } from "react-redux";
+// import { useGetCategoryQuery } from "@/redux/feature/category/categoryApi";
+// import { useSelector } from "react-redux";
 
 export const UploadProjectForm = () => {
 
 
-    const { data } = useGetCategoryQuery('');
-    const category = useSelector((state: any) => state.category);
-    console.log(category[0], "Data")
-    console.log(selectConfig.bloodGroup, "selectConfig.bloodGroup")
+    // const { data } = useGetCategoryQuery('');
+    // const category = useSelector((state: any) => state.category);
+    // // console.log(category[0], "Data")
+    // console.log(selectConfig.bloodGroup, "selectConfig.bloodGroup")
 
 
     const form = useForm<z.infer<typeof ProjectSchema>>({
@@ -54,13 +54,13 @@ export const UploadProjectForm = () => {
                                 required={true}
                             />
 
-                            <SelectFieldWrapper
+                            {/* <SelectFieldWrapper
                                 config={category[0]}
                                 control={form.control}
                                 name="category"
                                 formLabel="Category"
                                 placeholder="select one"
-                            />
+                            /> */}
                             {/* <SelectFieldWrapper
                                 config={selectConfig.bloodGroup}
                                 control={form.control}

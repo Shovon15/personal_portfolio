@@ -4,14 +4,16 @@ import { docsConfig } from "@/config/docs";
 import { cn } from "@/lib/utils";
 import Link, { LinkProps } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 import ClientMobileSidebar from "./clientSidebar";
 import { ThemeToggle } from "@/components/themeProvider/themeToggle";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import logo from "../../../../public/logo/coding.png";
-import { useSelector } from "react-redux";
+import { useAuth } from "@/context/authProvider";
+
+
 
 type Props = {};
 
@@ -20,7 +22,8 @@ const ClientNav = (props: Props) => {
     const pathNames = paths.split("/").filter((path) => path || "");
     const currentPathName = `/${pathNames.slice(0, pathNames.length + 1).join("/")}`;
 
-    const { user } = useSelector((state: any) => state.auth);
+    // const { user } = useSelector((state: any) => state.auth);
+    const { user } = useAuth();
 
     return (
         <nav className="bg-primary-foreground border-b border-gray-200 w-full sticky top-0 z-[9]">

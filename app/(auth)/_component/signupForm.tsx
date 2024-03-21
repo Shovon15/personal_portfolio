@@ -10,7 +10,6 @@ import { InputFieldWrapper } from "@/components/formFieldWrapper/inputFieldWrapp
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/fromError";
 import { FormSuccess } from "@/components/fromSuccess";
-import { useRegisterMutation } from "@/redux/feature/auth/authApi";
 import Spinner from "@/components/spinner";
 
 type Props = {};
@@ -18,7 +17,7 @@ type Props = {};
 export const SignupForm = (props: Props) => {
     const [success, setSuccess] = React.useState("");
     const [error, setError] = React.useState("");
-    const [register, { data, isSuccess, error: signupError, isLoading }] = useRegisterMutation();
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const form = useForm<z.infer<typeof RegisterSchema>>({
         resolver: zodResolver(RegisterSchema),
@@ -29,26 +28,27 @@ export const SignupForm = (props: Props) => {
         },
     });
 
-    useEffect(() => {
-        if (isSuccess) {
-            const message = data?.message || "signup succcessful";
-            setSuccess(message);
-            // router.push('/verification');
-        }
+    // useEffect(() => {
+    //     if (isSuccess) {
+    //         const message = data?.message || "signup succcessful";
+    //         setSuccess(message);
+    //         // router.push('/verification');
+    //     }
 
-        if (signupError) {
-            if ("data" in signupError) {
-                const errorData = signupError as any;
-                const errorMessage = errorData?.data?.message || "something went wrong";
-                setError(errorMessage);
-            }
-        }
-    }, [signupError, isSuccess, data?.message]);
+    //     if (signupError) {
+    //         if ("data" in signupError) {
+    //             const errorData = signupError as any;
+    //             const errorMessage = errorData?.data?.message || "something went wrong";
+    //             setError(errorMessage);
+    //         }
+    //     }
+    // }, [signupError, isSuccess, data?.message]);
 
     const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
         setSuccess("");
         setError("");
-        await register(values);
+        // await register(values);
+        console.log(values)
     };
 
     return (

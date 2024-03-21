@@ -20,13 +20,16 @@ const initialState: ICategory[] = [];
 
 
 const categorySlice = createSlice({
-    name: "auth",
+    name: "category",
     initialState,
     reducers: {
         addCategroy: (state, action: PayloadAction<{ category: ICategory }>) => {
+            console.log(action.payload.category, "category from slice")
             state.push(action.payload.category);
+            // state.category = action.payload.category
+            // console.log(state.category, "state from slice")
         },
-        removeCategory: (state, action: PayloadAction<{ accessToken: string, user: object }>) => {
+        removeCategory: (state, action: PayloadAction<{ category: ICategory }>) => {
             // state.token = action.payload.accessToken;
             // state.user = action.payload.user;
         },

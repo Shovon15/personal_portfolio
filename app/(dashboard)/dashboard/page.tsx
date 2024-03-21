@@ -2,16 +2,17 @@
 import { Button } from "@/components/ui/button";
 import { DashboardWrapper } from "../_components/dashboardWrapper";
 import Link from "next/link";
-import { useLogoutMutation } from "@/redux/feature/auth/authApi";
+// import { useLogoutMutation } from "@/redux/feature/auth/authApi";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/authProvider";
 
 const DashboardPage = () => {
-    const [logout, { isSuccess, isError }] = useLogoutMutation();
-
+    // const [logout, { isSuccess, isError }] = useLogoutMutation();
+    const { logout } = useAuth()
     const router = useRouter();
     const handleLogout = async () => {
-        await logout({});
-        router.push('/login');
+        await logout();
+        router.push('/');
     };
     return (
         <DashboardWrapper>

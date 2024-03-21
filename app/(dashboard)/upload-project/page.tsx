@@ -7,7 +7,6 @@ type Props = {}
 const UploadPage = (props: Props) => {
     return (
         <DashboardWrapper>
-
             <UploadProjectForm />
         </DashboardWrapper>
     )

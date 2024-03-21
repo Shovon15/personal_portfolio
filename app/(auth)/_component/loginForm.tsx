@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthWrapper } from './authWrapper'
@@ -10,18 +10,21 @@ import { InputFieldWrapper } from '@/components/formFieldWrapper/inputFieldWrapp
 import { Button } from '@/components/ui/button';
 import { FormError } from '@/components/fromError';
 import { FormSuccess } from '@/components/fromSuccess';
-import { useLoginMutation } from '@/redux/feature/auth/authApi';
 import Spinner from '@/components/spinner';
 import { useRouter } from 'next/navigation';
+import { post } from '@/utils/fetchApi';
+import Cookies from "js-cookie";
+import { useAuth } from '@/context/authProvider';
+
 
 type Props = {}
 
 export const LoginForm = (props: Props) => {
     const [success, setSuccess] = React.useState("");
     const [error, setError] = React.useState("");
+    const [isLoading, setIsLoading] = React.useState(false);
+    const { fetchData, user } = useAuth();
     const router = useRouter();
-
-    const [login, { isError, error: loginError, data, isSuccess, isLoading }] = useLoginMutation();
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
@@ -31,27 +34,33 @@ export const LoginForm = (props: Props) => {
         },
     });
 
-
-    useEffect(() => {
-        if (isSuccess) {
-            const message = data?.message || "signup succcessful";
-            setSuccess(message);
-            router.push('/dashboard');
-        }
-
-        if (loginError) {
-            if ("data" in loginError) {
-                const errorData = loginError as any;
-                const errorMessage = errorData?.data?.message || "something went wrong";
-                setError(errorMessage);
-            }
-        }
-    }, [loginError, isSuccess, data?.message, router]);
-
     const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+
         setSuccess("");
         setError("");
-        await login(values);
+        console.log(values)
+        try {
+            setIsLoading(true);
+
+            const response = await post("/login", values);
+            const userToken = response.data?.payload?.accessToken;
+
+            const successMessage = response.data?.message;
+
+            if (userToken) {
+                Cookies.set("token", userToken);
+                fetchData();
+                setSuccess(successMessage);
+                router.push('/deshboard');
+        }
+
+        } catch (error: any) {
+            console.log(error);
+            const errorMessage = (error?.response?.data.message);
+            setError(errorMessage)
+        } finally {
+            setIsLoading(false);
+        }
     };
 
 

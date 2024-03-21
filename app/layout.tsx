@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/themeProvider/themeProvider";
-import { ReduxProviders } from "./provider";
 import { Custom } from "@/utils/customLoader";
+import { AuthProvider } from "@/context/authProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -61,13 +61,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
-        <ReduxProviders>
+        {/* <ReduxProviders> */}
+        <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <Custom>
               {children}
             </Custom>
           </ThemeProvider>
-        </ReduxProviders>
+        </AuthProvider>
+        {/* </ReduxProviders> */}
       </body>
     </html>
   );

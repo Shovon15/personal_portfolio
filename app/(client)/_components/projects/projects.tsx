@@ -52,7 +52,6 @@ const ProjectComponent = (props: Props) => {
                         {
                             matchingItems.map((item, index) => (
                                 <TabCardWrapper key={index} item={item} />
-
                             ))
                         }
                     </TabsContent>

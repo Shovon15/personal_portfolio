@@ -51,6 +51,11 @@ export const docsConfig: DocsConfig = {
             title: "Projects",
             items: [
                 {
+                    title: "Category",
+                    href: "/category",
+                    items: [],
+                },
+                {
                     title: "Upload Project",
                     href: "/upload-project",
                     items: [],
@@ -108,6 +113,16 @@ export const docsConfig: DocsConfig = {
         {
             title: "Node Js",
             value: "node_js",
+            disabled: false
+        },
+        {
+            title: "Express Js",
+            value: "express_js",
+            disabled: false
+        },
+        {
+            title: "Tailwind Css",
+            value: "tailwind_css",
             disabled: false
         }
     ]

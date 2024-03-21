@@ -1,7 +1,10 @@
 "use client"
 
+
+
+import { useAuth } from "@/context/authProvider";
 import { useLoadUserQuery } from "@/redux/feature/api/apiSlice";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BounceLoader from "react-spinners/BounceLoader";
 
 
@@ -10,22 +13,22 @@ type CustomPros = {
 }
 
 export const Custom = ({ children }: CustomPros) => {
-    const [loading, setLoading] = useState<boolean>(true);
+    // const [loading, setLoading] = useState<boolean>(true);
 
-    const { isLoading } = useLoadUserQuery();
-
-    useEffect(() => {
-        if (!isLoading) {
-            setLoading(false);
-        }
-    }, [isLoading]);
+    const { isLoading } = useAuth();
+    // console.log(isLoading, "authContext")
+    // useEffect(() => {
+    //     if (!isLoading) {
+    //         setLoading(false);
+    //     }
+    // }, [isLoading]);
 
     // console.log(isLoading);
 
     return (
         <>
             {
-                loading ?
+                isLoading ?
                     <div className="flex justify-center items-center min-h-screen">
                         <BounceLoader
                             color="#053B50"

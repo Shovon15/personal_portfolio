@@ -1,10 +1,9 @@
-import { useLoadUserQuery } from "@/redux/feature/api/apiSlice";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useAuth } from "@/context/authProvider";
 
 const useUserAuth = () => {
-    const { user } = useSelector((state: any) => state.auth);
-    if (user) {
+    const { isLoading, user } = useAuth();
+   
+    if (!isLoading && user) {
         return true;
     }
     return false;
