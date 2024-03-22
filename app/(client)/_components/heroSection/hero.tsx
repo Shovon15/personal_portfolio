@@ -7,6 +7,7 @@ import heroImage from "../../../../public/images/hero-image.png";
 import { Button } from "@/components/ui/button";
 import SocialLink from "./socialLink";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 // import myCv from "../../../../data/"
 type Props = {};
 
@@ -21,7 +22,7 @@ const HeroComponent = (props: Props) => {
     return (
         <div className="flex flex-col md:flex-row ">
             <div className="w-full md:w-7/12 p-5 md:p-10 flex flex-col justify-between">
-                <div className="flex flex-col justify-center gap-3 md:pt-12 px-10">
+                <div className="flex flex-col justify-center gap-3 md:pt-12 md:px-10">
                     <h1 className={cn("text-lg ")}>Hi, My name is</h1>
                     <h1 className="text-5xl font-bold text-[#3bad7e]">Shovon Mahamud</h1>
                     <h1 className={cn("text-4xl font-bold text-black/60")}>I Build things for the web</h1>
@@ -33,7 +34,9 @@ const HeroComponent = (props: Props) => {
                         interfaces that bring ideas to life
                     </h1>
                     <div className="flex gap-2">
+                        <Link href="/hire-me">
                         <Button className={cn("w-24 bg-primary")}>Hire Me</Button>
+                        </Link>
 
                         <Button asChild className="w-24">
                             <a
