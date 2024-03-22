@@ -31,7 +31,7 @@ const ProjectComponent = (props: Props) => {
             <h1 className='text-center font-bold text-3xl text-primary dark:text-primary py-2'>My Works</h1>
 
             <Tabs defaultValue={activeTab} className="">
-                <TabsList className="flex gap-2 w-[300px] md:w-[600px] mx-auto">
+                <TabsList className="flex gap-2 w-full px-3 md:w-[600px] md:mx-auto">
                     {
                         docsConfig.category.map(({ title, value, disabled }) => (
                             !disabled ? (
