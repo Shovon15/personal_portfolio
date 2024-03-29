@@ -25,7 +25,7 @@ const HeroComponent = (props: Props) => {
                 <div className="flex flex-col justify-center gap-3 md:pt-12 md:px-10">
                     <h1 className={cn("text-lg ")}>Hi, My name is</h1>
                     <h1 className="text-5xl font-bold text-[#3bad7e]">Shovon Mahamud</h1>
-                    <h1 className={cn("text-4xl font-bold text-black/60")}>I Build things for the web</h1>
+                    <h1 className={cn("text-4xl font-bold text-black/60 dark:text-white/60")}>I Build things for the web</h1>
                     <h1>
                         I am a web developer specializing in web development, I am passionate about creating responsive
                         web applications that deliver exceptional user experiences. With expertise in JavaScript and
