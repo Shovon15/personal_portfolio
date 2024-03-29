@@ -11,27 +11,27 @@ import { Button } from '@/components/ui/button'
 import { projectData } from '@/data';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IProject } from '@/utils/dataTypes';
 
 
 type CardObject = {
-    name: string;
-    images: string[];
-    description: string;
-    live_link: string;
+    // name: string;
+    // images: string[];
+    // description: string;
+    // live_link: string;
 }
 type CardProps = {
-    item: CardObject;
+    item: IProject;
 }
 
 const TabCardWrapper = ({ item }: CardProps) => {
-    // console.log(item, "item.image")
     return (
-        <Card className='w-80 bg-primary-foreground dark:bg-primary-foreground shadow-xl'>
-            <Image src={item?.images[0]} alt='...' width={400} height={300} />
+        <Card className='w-full max-w-80 bg-primary-foreground dark:bg-primary-foreground shadow-xl'>
+            <Image src={item?.images[0]} alt='...' width={1200} height={700} className='rounded-lg' />
             <CardHeader>
                 <CardTitle className='pb-2'>{item.name}</CardTitle>
                 <CardDescription>
-                    {item.description}
+                    {item.title}
                 </CardDescription>
             </CardHeader>
             {/* <CardContent className="space-y-2">
@@ -43,12 +43,13 @@ const TabCardWrapper = ({ item }: CardProps) => {
                 </div>
             </CardContent> */}
             <CardFooter className='flex justify-between'>
-                <Button className='w-28'>details</Button>
+                <Link href={`projects/${item.slug}`}>
+                    <Button className='w-28'>details</Button>
+                </Link>
                 {
-                    item.live_link &&
-
+                    item.link &&
                     <Button className='w-28' asChild>
-                        <Link href={item.live_link} target="_blank" passHref={true} rel="noopener noreferrer">
+                            <Link href={item.link} target="_blank" passHref={true} rel="noopener noreferrer">
                             Live Preview
                         </Link>
                     </Button>

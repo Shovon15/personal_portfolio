@@ -59,7 +59,7 @@ const ClientNav = (props: Props) => {
                     {
                         user && (
                             <>
-                                <Link href="dashboard">
+                                <Link href="/dashboard">
                                     <Avatar>
                                         {user?.avatar?.url ? (
                                             <AvatarImage src={user.avatar.url} />

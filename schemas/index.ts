@@ -26,10 +26,24 @@ export const ProjectSchema = z.object({
     name: z.string().min(1, {
         message: "Name is required",
     }),
+	title: z.string().min(1, {
+		message: "title is required",
+	}),
+	link: z.string().min(1, {
+		message: "live link is required",
+	}),
+	description: z.string().min(1, {
+		message: "description is required",
+	}),
+	category: z.array(z.string()).min(1, {
+		message: "At least one category is required",
+	}),
+	images: z.array(z.instanceof(File)),
+});
 
-    category: z.string().min(1, {
-        message: "category is required",
-    }),
-
+export const CategorySchema = z.object({
+	categoryName: z.string().min(1, {
+		message: "Category Name is required",
+	}),
 });
 

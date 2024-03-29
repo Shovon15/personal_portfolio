@@ -18,7 +18,7 @@ type SeleceFieldProps = {
 };
 const SelectFieldWrapper = ({ config, control, name, formLabel, placeholder, required }: SeleceFieldProps) => {
 
-    console.log(config, "congiof")
+    // console.log(config, "congiof")
     return (
         <FormField
             control={control}
@@ -50,3 +50,10 @@ const SelectFieldWrapper = ({ config, control, name, formLabel, placeholder, req
 };
 
 export default SelectFieldWrapper;
+{/* <SelectFieldWrapper
+                                config={category[0]}
+                                control={form.control}
+                                name="category"
+                                formLabel="Category"
+                                placeholder="select one"
+                            /> */}

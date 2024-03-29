@@ -40,7 +40,7 @@ export default function DesktopSidebar({ handleSidebar }: SidebarProps) {
 
 
     return (
-        <div className="bg-primary dark:bg-primary text-primary-foreground dark:taxt-primary-foreground shadow-xl">
+        <div className="bg-secondary dark:bg-secondary shadow-xl">
             <div className="flex justify-between items-center p-2 h-16 border-b pl-7">
                 <DashboardLink href="/dashboard" className="items-center flex gap-3">
                     <span className="font-bold text-lg">Dashboard</span>
@@ -67,7 +67,7 @@ export default function DesktopSidebar({ handleSidebar }: SidebarProps) {
                                                     buttonVariants({
                                                         variant: item.href === currentPathName ? "default" : "ghost",
                                                     }),
-                                                    `${currentPathName === item.href ? "text-background dark:text-background" : "text-muted-foreground"} w-full justify-start px-2  cursor-pointer`
+                                                    `${currentPathName === item.href ? "text-background dark:text-background" : "text-muted-foreground hover:bg-white"} w-full justify-start px-2  cursor-pointer`
                                                 )}
                                             >
                                                 {item.title}

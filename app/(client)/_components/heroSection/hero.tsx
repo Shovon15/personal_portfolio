@@ -54,7 +54,7 @@ const HeroComponent = (props: Props) => {
                 </div>
             </div>
             <div className="w-full md:w-5/12  flex justify-center items-center">
-                <Image src={heroImage} width={500} height={500} alt="hero img" />
+                <Image src={heroImage} width={500} height={500} alt="hero img" priority={true} />
             </div>
         </div>
     );

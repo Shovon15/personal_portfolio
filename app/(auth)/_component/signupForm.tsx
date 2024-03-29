@@ -48,7 +48,7 @@ export const SignupForm = (props: Props) => {
         setSuccess("");
         setError("");
         // await register(values);
-        console.log(values)
+        // console.log(values)
     };
 
     return (

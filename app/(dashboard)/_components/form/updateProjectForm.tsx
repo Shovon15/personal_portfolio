@@ -1,22 +1,41 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Control, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+
+import { selectConfig } from "@/config/select";
+import { Label } from "@/components/ui/label";
 import { ProjectSchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { InputFieldWrapper } from "@/components/formFieldWrapper/inputFieldWrapper";
-import { ImageFieldWrapper } from "@/components/formFieldWrapper/imageFieldWrapper";
 import SelectFieldWrapper from "@/components/formFieldWrapper/selectFieldWrapper";
+import { Checkbox } from "@radix-ui/react-checkbox";
 import { CheackBoxWrapper } from "@/components/formFieldWrapper/checkBoxWrapper";
-import EditorFieldWrapper from "@/components/formFieldWrapper/editorFieldWrapper";
-import { post } from "@/utils/fetchApi";
+import { get, post, put } from "@/utils/fetchApi";
 import Spinner from "@/components/spinner";
+import { ImageFieldWrapper } from "@/components/formFieldWrapper/imageFieldWrapper";
+import { Editor } from "@tinymce/tinymce-react";
+import { tineMceApiKey } from "@/secret";
+import { link } from "fs";
 import { toast, useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { toBase64 } from "@/utils/toBase64";
+import { CustomPageSpinner } from "@/utils/customPageSpinner";
+import EditorFieldWrapper from "@/components/formFieldWrapper/editorFieldWrapper";
 import { TextAreaWrapper } from "@/components/formFieldWrapper/textAreaWrapper";
 
 interface Category {
@@ -26,55 +45,71 @@ interface Category {
     value: string;
     isEnabled: boolean;
 }
-export const UploadProjectForm = () => {
+interface UpdateProjectFormProps {
+    id: string;
+    data: any;
+}
+export const UpdateProjectForm = ({ id, data }: UpdateProjectFormProps) => {
     const [loading, setLoading] = useState<boolean>(false);
+    const [oldImages, setOldImages] = useState<string[]>([]);
+
     const { toast } = useToast();
     const router = useRouter();
 
+    useEffect(() => {
+        if (data && data?.images?.length > 0) {
+            setOldImages(data?.images);
+        }
+    }, [data]);
 
     const form = useForm<z.infer<typeof ProjectSchema>>({
         resolver: zodResolver(ProjectSchema),
         defaultValues: {
-            name: "",
-            title: "",
-            link: "",
-            category: [],
+            name: data?.name || "",
+            title: data?.title || "",
+            link: data?.link || "",
+            category: data?.category || [],
             images: [],
-            description: ""
+            description: data?.description || ""
         },
     });
 
     const onSubmit = async (values: z.infer<typeof ProjectSchema>) => {
-        if (!values.images || values.images.length === 0) {
+
+        if ((!values.images || values.images.length === 0) && (!oldImages || oldImages.length === 0)) {
             toast({ title: "at least one Image is required" });
             return;
         }
 
         try {
             setLoading(true);
-            const imageList = await Promise.all(
-                values.images.map(async (imageFile) => {
-                    try {
-                        const imageData = await toBase64(imageFile); // Wait for the base64 conversion
-                        return imageData;
-                    } catch (error) {
-                        toast({ title: `Error converting image to base64: ${error}` });
-                        throw error; // Rethrow the error to halt further execution
-                    }
-                })
-            );
 
-            // Proceed with other operations only if imageList conversion is successful
-            const formData = {
+            let formData = {
                 name: values.name,
                 title: values.title,
                 link: values.link,
                 categories: values.category,
-                images: imageList, // Include the imageList in the formData
+                oldImages: oldImages,
                 description: values.description,
+                images: [] as string[],
             };
 
-            const response = await post(`/project`, formData);
+            if (values.images && values.images.length > 0) {
+                const imageList: string[] = await Promise.all(
+                    values.images.map(async (imageFile) => {
+                        const imageData = await toBase64(imageFile);
+                        return imageData.toString();
+                    })
+                );
+
+                formData = {
+                    ...formData,
+                    images: imageList,
+                };
+            }
+
+
+            const response = await put(`/project/${id}`, formData);
             toast({ title: response.data.message });
             router.push("/dashboard/projects");
         } catch (error: any) {
@@ -84,8 +119,7 @@ export const UploadProjectForm = () => {
         } finally {
             setLoading(false);
         }
-    };
-
+    }
 
 
     return (
@@ -116,7 +150,6 @@ export const UploadProjectForm = () => {
                             placeholder="live link"
                             required={true}
                         />
-
                         <CheackBoxWrapper
                             control={form.control}
                             name="category"
@@ -129,6 +162,8 @@ export const UploadProjectForm = () => {
                             name="images"
                             formLabel="Images"
                             required={true}
+                            oldImages={oldImages}
+                            selectedOldImages={(images) => setOldImages(images)}
                         />
 
                         <EditorFieldWrapper

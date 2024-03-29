@@ -38,7 +38,7 @@ export const LoginForm = (props: Props) => {
 
         setSuccess("");
         setError("");
-        console.log(values)
+        // console.log(values)
         try {
             setIsLoading(true);
 

@@ -2,6 +2,7 @@ import React from "react";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Eye, EyeOff } from "lucide-react";
+import { Textarea } from "../ui/textarea";
 
 // import { Control } from 'react-hook-form';
 
@@ -14,7 +15,7 @@ type InputWrapperProsp = {
     required?: boolean;
     passwordShowButton?: boolean;
 };
-export const InputFieldWrapper = ({
+export const TextAreaWrapper = ({
     control,
     name,
     formLabel,
@@ -35,29 +36,14 @@ export const InputFieldWrapper = ({
                         {formLabel}
                         {required && <span className="text-red-500"> *</span>}
                     </FormLabel>
-                    {passwordShowButton ? (
-                        <>
-                            <div onClick={() => setPasswordToggle(!passwordToggle)} className="absolute right-5 top-9">
-                                {passwordToggle ? <EyeOff className="w-5 h-5 cursor-pointer" /> : <Eye className="w-5 h-5 cursor-pointer" />}
-                            </div>
-                            <FormControl>
-                                <Input
-                                    {...field}
-                                    disabled={disabled}
-                                    placeholder={placeholder}
-                                    type={passwordToggle ? "text" : "password"}
-                                />
-                            </FormControl>
-                        </>
-                    ) : (
+
                         <FormControl>
-                            <Input
+                            <Textarea
                                 {...field}
                                 disabled={disabled}
                                 placeholder={placeholder}
                             />
                         </FormControl>
-                    )}
                     <FormMessage />
                 </FormItem>
             )}

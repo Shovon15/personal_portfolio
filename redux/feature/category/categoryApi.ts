@@ -13,7 +13,7 @@ export const categoryApi = apiSlice.injectEndpoints({
 			onQueryStarted: async (arg, { queryFulfilled, dispatch }) => {
 				try {
 					const result = await queryFulfilled;
-					console.log(result, "result from get category")
+					// console.log(result, "result from get category")
 
 					dispatch(
 						addCategroy({

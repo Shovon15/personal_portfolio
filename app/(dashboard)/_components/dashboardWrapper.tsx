@@ -13,7 +13,7 @@ type DashboardWrapperProps = {
 
 export const DashboardWrapper = ({ children }: DashboardWrapperProps) => {
     return (
-        <Card className="w-full min-h-screen px-5 bg-transparent">
+        <Card className="w-full min-h-screen px-5 bg-transparent rounded-none">
             <CardHeader className='p-4'>
                 <Breadcrumb
                     homeElement={"dashobard"}

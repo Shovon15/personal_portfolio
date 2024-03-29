@@ -51,24 +51,26 @@ export const docsConfig: DocsConfig = {
             title: "Projects",
             items: [
                 {
-                    title: "Category",
-                    href: "/category",
+                    title: "Category Manage",
+                    href: "/dashboard/category",
                     items: [],
                 },
                 {
-                    title: "Upload Project",
-                    href: "/upload-project",
+                    title: "Project Manage",
+                    href: "/dashboard/projects",
                     items: [],
                 },
                 {
                     title: "Applying Student",
                     href: "/students/apply-student",
                     items: [],
+                    disabled: true,
                 },
                 {
                     title: "Summary",
                     href: "/students/summary",
                     items: [],
+                    disabled: true,
                 },
                 {
                     title: "Details",
@@ -78,31 +80,31 @@ export const docsConfig: DocsConfig = {
                 },
             ],
         },
-        {
-            title: "Teachers & Staffs",
-            items: [
-                {
-                    title: "Teachers",
-                    href: "/teachers",
-                    items: [],
-                },
-                {
-                    title: "Registration",
-                    href: "/teachers/teacher-registration",
-                    items: [],
-                },
-                {
-                    title: "Staff",
-                    href: "/staffs",
-                    items: [],
-                },
-                {
-                    title: "Add Staff",
-                    href: "/staffs/staff-registration",
-                    items: [],
-                },
-            ],
-        },
+        // {
+        //     title: "Teachers & Staffs",
+        //     items: [
+        //         {
+        //             title: "Teachers",
+        //             href: "/teachers",
+        //             items: [],
+        //         },
+        //         {
+        //             title: "Registration",
+        //             href: "/teachers/teacher-registration",
+        //             items: [],
+        //         },
+        //         {
+        //             title: "Staff",
+        //             href: "/staffs",
+        //             items: [],
+        //         },
+        //         {
+        //             title: "Add Staff",
+        //             href: "/staffs/staff-registration",
+        //             items: [],
+        //         },
+        //     ],
+        // },
     ],
     category: [
         {
