@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Custom } from "@/utils/customLoader";
 import { ThemeProvider } from "@/components/themeProvider/themeProvider";
 import { AuthProvider } from "@/context/authProvider";
-import { DataProvider } from "@/context/dataProvider";
+// import { DataProvider } from "@/context/dataProvider";
 
 
 interface ProviderProps {
