@@ -16,22 +16,23 @@ export const AvatarUpdateForm = ({ refetch, setModalOpen }: Props) => {
     const [image, setImage] = useState<File[] | null>(null);
 
     const handleUpdateProfile = async () => {
-        // const title="this is title",
-        if (!image) {
-            return;
-        }
-        const base64Image = await toBase64(image[0] as File);
-        // console.log(JSON.stringify(base64Image), "image");
+        // // const title="this is title",
+        // if (!image) {
+        //     return;
+        // }
+        // const base64Image = await toBase64(image[0] as File);
+        // // console.log(JSON.stringify(base64Image), "image");
 
-        const formData = {
-            image: base64Image,
-        };
+        // const formData = {
+        //     image: base64Image,
+        // };
 
-        const res = await post("/update-user", formData);
+        // const res = await post("/update-user", formData);
 
-        refetch()
-        setModalOpen(false)
+        // refetch()
+        // setModalOpen(false)
     }
+
     return (
         <div>
             <div>
@@ -39,7 +40,12 @@ export const AvatarUpdateForm = ({ refetch, setModalOpen }: Props) => {
                     Avatar <span className="text-red-500">*</span>
                 </p>
                 <div className="w-full max-w-80 mx-auto">
-                    <ImageFieldWrapper onImageSelect={(imageFile) => setImage(imageFile)} />
+                    {/* <ImageFieldWrapper
+                        control={form.control}
+                        name="images"
+                        formLabel="Images"
+                        required={true}
+                    /> */}
                 </div>
             </div>
             <div className='p-5'>
