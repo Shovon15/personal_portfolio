@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-
 // interface IUser {
 //     _id: string;
 //     name?: string;
@@ -31,7 +30,7 @@ const authSlice = createSlice({
         },
         userLogedIn: (state, action: PayloadAction<{ accessToken: string, user: object }>) => {
             state.token = action.payload.accessToken;
-            // state.user = action.payload.user;
+            state.user = action.payload.user;
             localStorage.setItem('token', action.payload.accessToken); 
         },
         userLogedOut: (state, action) => {

@@ -25,7 +25,7 @@ const EditorFieldWrapper = ({ control, name, formLabel, required }: Props) => {
 
                     <FormControl>
                         <Editor
-                            apiKey={tineMceApiKey}
+                            apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
                             onInit={(evt, editor) => {
                                 editorRef.current = editor;
                                 editor.on("change", () => field.onChange(editor.getContent()));
