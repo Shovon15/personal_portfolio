@@ -1,7 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react";
 import React, { useRef } from "react";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
-import { tineMceApiKey } from "@/secret";
+// import { tineMceApiKey } from "@/secret";
 
 type Props = {
     control: any;

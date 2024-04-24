@@ -29,7 +29,6 @@ import { get, post, put } from "@/utils/fetchApi";
 import Spinner from "@/components/spinner";
 import { ImageFieldWrapper } from "@/components/formFieldWrapper/imageFieldWrapper";
 import { Editor } from "@tinymce/tinymce-react";
-import { tineMceApiKey } from "@/secret";
 import { link } from "fs";
 import { toast, useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
