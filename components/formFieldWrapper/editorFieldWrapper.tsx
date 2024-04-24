@@ -1,7 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react";
 import React, { useRef } from "react";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
-// import { tineMceApiKey } from "@/secret";
+import { tineMceApiKey } from "@/secret";
 
 type Props = {
     control: any;
@@ -25,7 +25,7 @@ const EditorFieldWrapper = ({ control, name, formLabel, required }: Props) => {
 
                     <FormControl>
                         <Editor
-                            apiKey="dne6kwcfh5bie2h2hkj9qjtgu1xk4qthm9k6xajczb3vuj4e"
+                            apiKey={tineMceApiKey}
                             onInit={(evt, editor) => {
                                 editorRef.current = editor;
                                 editor.on("change", () => field.onChange(editor.getContent()));
