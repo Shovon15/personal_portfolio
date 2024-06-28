@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/themeProvider/themeToggle";
+import { useAuth } from "@/context/authProvider";
+import Spinner from "@/components/spinner";
 
 type NavProps = {
     handleSidebar: () => void;
@@ -15,12 +17,14 @@ type NavProps = {
 const DashboardNavbar = ({ handleSidebar, isSidebarOpen }: NavProps) => {
 
     // const { user } = useSelector((state: any) => state.auth);
-    const user = {
-        avatar: {
-            url:"https://github.com/shadcn.png"
-        },
-        name: "shovon"
-    };
+    const { user, isLoading } = useAuth();
+
+    // const user = {
+    //     avatar: {
+    //         url:"https://github.com/shadcn.png"
+    //     },
+    //     name: "shovon"
+    // };
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b dark:border-slate-100 bg-secondary dark:bg-secondary px-10">
@@ -42,7 +46,9 @@ const DashboardNavbar = ({ handleSidebar, isSidebarOpen }: NavProps) => {
                     </Button>
                 </div>
                 <div className="flex gap-3">
-                    {
+                    {isLoading ? (
+                        <div><Spinner/></div> // This is your loading indicator
+                    ) : (
                         user && (
                             <>
                                 <Avatar>
@@ -56,8 +62,8 @@ const DashboardNavbar = ({ handleSidebar, isSidebarOpen }: NavProps) => {
                                 </Avatar>
                             </>
                         )
-                    }
-                      <ThemeToggle />
+                    )}
+                    <ThemeToggle />
                 </div>
             </div>
         </nav>

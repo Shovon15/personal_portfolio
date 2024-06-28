@@ -15,27 +15,27 @@ import { AvatarUpdateForm } from "../_components/userUpdateForm/avatarUpdate";
 import { UserModal } from "@/components/customModel/userModal";
 
 const DashboardPage = () => {
-	const { logout, user } = useAuth();
-
+	const { fetchData, logout, user, isLoading } = useAuth();
+// console.log(user,"user")
 	//modal state
 	const [authModalOpen, setAuthModalOpen] = useState(false);
 	const [formComponent, setFormComponent] = useState<React.ReactNode | null>(null);
 
 	const router = useRouter();
 
-	const {
-		data: userInfo = {},
-		refetch,
-		isLoading,
-	} = useQuery({
-		queryKey: ["userInfo"],
-		queryFn: async () => {
-			const res = await get("/user-info");
-			const data = res.data.payload?.user;
+	// const {
+	// 	data: userInfo = {},
+	// 	refetch,
+	// 	isLoading,
+	// } = useQuery({
+	// 	queryKey: ["userInfo"],
+	// 	queryFn: async () => {
+	// 		const res = await get("/user-info");
+	// 		const data = res.data.payload?.user;
 
-			return data;
-		},
-	});
+	// 		return data;
+	// 	},
+	// });
 
 
 	const handleLogout = async () => {
@@ -49,13 +49,13 @@ const DashboardPage = () => {
 
 	return (
 		<DashboardWrapper>
-			{userInfo && (
+			{user && (
 				<>
 					<div>
-						<p className="font-bold text-xl p-3">{userInfo.name}</p>
-						{userInfo.avatar?.url && (
+						<p className="font-bold text-xl p-3">{user.name}</p>
+						{user.avatar?.url && (
 							<Image
-								src={userInfo.avatar.url}
+								src={user.avatar.url}
 								alt="user-avatar"
 								width={200}
 								height={200}
@@ -72,7 +72,7 @@ const DashboardPage = () => {
 					modalOpen={authModalOpen}
 					setModalOpen={setAuthModalOpen}
 					handleOpen={() => setAuthModalOpen(true)}
-					formComponent={<AvatarUpdateForm refetch={refetch} setModalOpen={setAuthModalOpen} />}
+					formComponent={<AvatarUpdateForm refetch={fetchData} setModalOpen={setAuthModalOpen} />}
 				/>
 			</div>
 			<div className="space-y-5">

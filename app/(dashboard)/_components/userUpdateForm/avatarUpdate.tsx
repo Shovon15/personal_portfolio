@@ -8,7 +8,8 @@ import React, { useState } from 'react'
 
 type Props = {
     setModalOpen: (modalOpen: boolean) => void;
-    refetch: () => Promise<QueryObserverResult<any, unknown>>;
+    // refetch: () => Promise<QueryObserverResult<any, unknown>>;
+    refetch: () => void;
 }
 
 export const AvatarUpdateForm = ({ refetch, setModalOpen }: Props) => {
