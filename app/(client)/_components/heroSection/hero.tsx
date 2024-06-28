@@ -40,7 +40,7 @@ const HeroComponent = (props: Props) => {
 
                         <Button asChild className="w-24">
                             <a
-                                href="https://drive.google.com/file/d/1iQymPQtgXjz22ZOKqaHgFvGqTTqG4uHz/view"
+                                href="https://drive.google.com/file/d/1VkJcEFS1TMLE4cQ1_FXm1S2bhCo71IvG/view"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
