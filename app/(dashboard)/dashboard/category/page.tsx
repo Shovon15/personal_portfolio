@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { DashboardWrapper } from "../../_components/dashboardWrapper";
+// import { DashboardWrapper } from "../../_components/dashboardWrapper";
 import { useQuery } from "@tanstack/react-query";
 import { del, get, put } from "@/utils/fetchApi";
 import {
@@ -18,6 +18,7 @@ import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
 import { useToast } from "@/components/ui/use-toast";
 import ConfirmationModal from "@/components/customModel/confirmationModal";
 import { ICategory } from "@/utils/dataTypes";
+// import { DashboardWrapper } from "../../_components/dashboardWrapper";
 
 
 
@@ -85,8 +86,8 @@ const CategoryPage = () => {
         return <div className="flex min-h-screen justify-center items-center">loading...</div>;
     }
     return (
-        <DashboardWrapper>
-
+        // <DashboardWrapper>
+        <div>
             <div className="flex justify-center md:justify-end">
                 <UserModal
                     button={
@@ -159,7 +160,8 @@ const CategoryPage = () => {
                     successAction={handleDelete}
                 />
             }
-        </DashboardWrapper>
+            {/* </DashboardWrapper> */}
+        </div >
     );
 };
 
