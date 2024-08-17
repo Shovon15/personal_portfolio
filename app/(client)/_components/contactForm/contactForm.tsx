@@ -26,9 +26,7 @@ const ContactForm = (props: Props) => {
         defaultValues: {
             name: "",
             email: "",
-            phone: "",
             details: "",
-
         },
     });
 
@@ -36,31 +34,16 @@ const ContactForm = (props: Props) => {
 
         try {
             setLoading(true);
-            // const imageList = await Promise.all(
-            //     values.images.map(async (imageFile) => {
-            //         try {
-            //             const imageData = await toBase64(imageFile); // Wait for the base64 conversion
-            //             return imageData;
-            //         } catch (error) {
-            //             toast({ title: `Error converting image to base64: ${error}` });
-            //             throw error; // Rethrow the error to halt further execution
-            //         }
-            //     })
-            // );
 
-            // Proceed with other operations only if imageList conversion is successful
-            // const formData = {
-            //     name: values.name,
-            //     title: values.title,
-            //     link: values.link,
-            //     categories: values.category,
-            //     images: imageList, // Include the imageList in the formData
-            //     description: values.description,
-            // };
+            const formData = {
+                name: values.name,
+                email: values.email,
+                details: values.details
+            };
 
-            // const response = await post(`/`, formData);
-            // toast({ title: response.data.message });
-            // router.push("/dashboard/projects");
+            const response = await post(`/contact`, formData);
+            toast({ title: response.data.message });
+            router.push("/");
         } catch (error: any) {
             console.error(error);
             const errorMessage = error.response?.data?.message || "An error occurred while creating project";
@@ -97,8 +80,6 @@ const ContactForm = (props: Props) => {
                             placeholder="details"
                             required={true}
                         />
-
-
                     </div>
 
                     <div className="mx-auto w-full max-w-28">

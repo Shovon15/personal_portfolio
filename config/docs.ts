@@ -61,10 +61,10 @@ export const docsConfig: DocsConfig = {
                     items: [],
                 },
                 {
-                    title: "Applying Student",
-                    href: "/students/apply-student",
+                    title: "Contact Manage",
+                    href: "/dashboard/contact",
                     items: [],
-                    disabled: true,
+                    disabled: false,
                 },
                 {
                     title: "Summary",

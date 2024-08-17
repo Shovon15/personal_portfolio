@@ -19,3 +19,11 @@ export interface IProject {
     description: string;
     isEnabled: boolean;
 }
+
+export interface IContact {
+    index: number;
+    _id: string;
+    name: string;
+    email: string;
+    details: string;
+}

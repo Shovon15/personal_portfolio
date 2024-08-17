@@ -67,7 +67,7 @@ export default function DesktopSidebar({ handleSidebar }: SidebarProps) {
                                                     buttonVariants({
                                                         variant: item.href === currentPathName ? "default" : "ghost",
                                                     }),
-                                                    `${currentPathName === item.href ? "text-background dark:text-background" : "text-muted-foreground hover:bg-white"} w-full justify-start px-2  cursor-pointer`
+                                                    `${currentPathName === item.href ? "text-background dark:text-background" : "text-muted-foreground hover:bg-white hover:text-black"} w-full justify-start px-2  cursor-pointer`
                                                 )}
                                             >
                                                 {item.title}
