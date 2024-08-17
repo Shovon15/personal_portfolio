@@ -16,7 +16,7 @@ type DialogProp = {
     formComponent: React.ReactNode;
 };
 
-export const UserModal = ({ modalOpen, setModalOpen, handleOpen, button, formComponent }: DialogProp) => {
+export const InputModal = ({ modalOpen, setModalOpen, handleOpen, button, formComponent }: DialogProp) => {
 
     return (
         <Dialog open={modalOpen} onOpenChange={setModalOpen} >

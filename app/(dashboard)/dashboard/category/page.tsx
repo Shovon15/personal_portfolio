@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { ICategory } from "@/utils/dataTypes";
-import { UserModal } from "@/components/customModel/userModal";
+import { InputModal } from "@/components/customModel/inputModal";
 import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
 
 
@@ -85,7 +85,7 @@ const CategoryPage = () => {
         // <DashboardWrapper>
         <div>
             <div className="flex justify-center md:justify-end">
-                <UserModal
+                <InputModal
                     button={
                         <Button className="flex gap-2">
                             <Plus />
