@@ -46,4 +46,18 @@ export const CategorySchema = z.object({
 		message: "Category Name is required",
 	}),
 });
+export const ContactSchema = z.object({
+	name: z.string().min(1, {
+		message: "name is required",
+	}),
+	email: z.string().min(1, {
+		message: "email is required",
+	}),
+	phone: z.string().min(1, {
+		message: "phone number is required",
+	}),
+	details: z.string().min(1, {
+		message: "name is required",
+	}),
+});
 
