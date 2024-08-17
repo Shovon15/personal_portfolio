@@ -8,22 +8,25 @@ import { Form } from "@/components/ui/form";
 import { CategorySchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { InputFieldWrapper } from "@/components/formFieldWrapper/inputFieldWrapper";
-import { QueryObserverResult } from "@tanstack/react-query";
+// import { QueryObserverResult } from "@tanstack/react-query";
 import { post } from "@/utils/fetchApi";
-import { FormError } from "@/components/fromError";
-import { FormSuccess } from "@/components/fromSuccess";
-
-type Props = {
-    setModalOpen: (modalOpen: boolean) => void;
-    refetch: () => Promise<QueryObserverResult<any, unknown>>;
-}
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import Spinner from "@/components/spinner";
 
 
-export const UploadCategoryForm = ({ setModalOpen, refetch }: Props) => {
+// type Props = {
+//     setModalOpen: (modalOpen: boolean) => void;
+//     refetch: () => Promise<QueryObserverResult<any, unknown>>;
+// }
 
-    const [success, setSuccess] = useState("");
-    const [error, setError] = useState("");
+
+export const UploadCategoryForm = () => {
+
     const [loading, setLoading] = useState<boolean>(false)
+
+    const { toast } = useToast();
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof CategorySchema>>({
         resolver: zodResolver(CategorySchema),
@@ -33,8 +36,7 @@ export const UploadCategoryForm = ({ setModalOpen, refetch }: Props) => {
     });
 
     const onSubmit = async (values: z.infer<typeof CategorySchema>) => {
-        setSuccess("")
-        setError("")
+
 
         const formData = {
             name: values.categoryName,
@@ -43,16 +45,14 @@ export const UploadCategoryForm = ({ setModalOpen, refetch }: Props) => {
         try {
             setLoading(true)
             const res = await post("/category", formData);
-
             const successMessage = res.data.message || "category create succssfully"
-            setSuccess(successMessage);
-            refetch();
-            setModalOpen(false);
+            toast({ title: successMessage });
+            router.push("/dashboard/category");
 
         } catch (error: any) {
             console.log(error, "error")
             const errorMessage = error.response.data.message || "An error occurred while updating category"
-            setError(errorMessage);
+            toast({ title: errorMessage });
         } finally {
             setLoading(false)
         }
@@ -61,8 +61,8 @@ export const UploadCategoryForm = ({ setModalOpen, refetch }: Props) => {
     return (
         <div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="">
-                    <div className="space-y-6 px-5 h-full flex flex-col items-center justify-center min-h-56">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col justify-center items-center">
+                    <div className="space-y-6 px-5 h-full w-full flex flex-col items-center justify-center min-h-56 max-w-96">
                         <InputFieldWrapper
                             control={form.control}
                             name="categoryName"
@@ -70,15 +70,14 @@ export const UploadCategoryForm = ({ setModalOpen, refetch }: Props) => {
                             placeholder="category name"
                             required={true}
                         />
-                        <FormError message={error} />
-                        <FormSuccess message={success} />
+
                     </div>
                     <Button
 
                         type="submit"
-                        className="mx-auto w-full"
+                        className="mx-auto w-full max-w-96"
                     >
-                        {loading ? "submitting..." : "submit"}
+                        {loading ? <Spinner /> : "submit"}
                     </Button>
                 </form>
             </Form>

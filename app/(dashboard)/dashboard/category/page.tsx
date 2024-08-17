@@ -11,13 +11,16 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { ICategory } from "@/utils/dataTypes";
 // import { InputModal } from "@/components/customModel/inputModal";
 // import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
 import { DashboardWrapper } from "../../_components/dashboardWrapper";
 import ConfirmationModal from "@/components/customModel/confirmationModal";
 import { useToast } from "@/components/ui/use-toast";
+import { InputModal } from "@/components/customModel/inputModal";
+import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
+import Link from "next/link";
 
 
 
@@ -87,6 +90,12 @@ const CategoryPage = () => {
     return (
         <DashboardWrapper>
             <div className="flex justify-center md:justify-end">
+                <Link href="/dashboard/category/upload-category">
+                    <Button className="flex gap-2">
+                        <Plus />
+                        add Category
+                    </Button>
+                </Link>
                 {/* <InputModal
                     button={
                         <Button className="flex gap-2">
