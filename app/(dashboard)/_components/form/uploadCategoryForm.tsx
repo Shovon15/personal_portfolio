@@ -1,26 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { Control, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
-
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-import { selectConfig } from "@/config/select";
-import { Label } from "@/components/ui/label";
+import { Form } from "@/components/ui/form";
 import { CategorySchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { InputFieldWrapper } from "@/components/formFieldWrapper/inputFieldWrapper";
-import SelectFieldWrapper from "@/components/formFieldWrapper/selectFieldWrapper";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { post } from "@/utils/fetchApi";
 import { FormError } from "@/components/fromError";
 import { FormSuccess } from "@/components/fromSuccess";
-// import { useGetCategoryQuery } from "@/redux/feature/category/categoryApi";
-// import { useSelector } from "react-redux";
+
 type Props = {
     setModalOpen: (modalOpen: boolean) => void;
     refetch: () => Promise<QueryObserverResult<any, unknown>>;
@@ -49,6 +41,7 @@ export const UploadCategoryForm = ({ setModalOpen, refetch }: Props) => {
         };
 
         try {
+            setLoading(true)
             const res = await post("/category", formData);
 
             const successMessage = res.data.message || "category create succssfully"
@@ -60,6 +53,8 @@ export const UploadCategoryForm = ({ setModalOpen, refetch }: Props) => {
             console.log(error, "error")
             const errorMessage = error.response.data.message || "An error occurred while updating category"
             setError(errorMessage);
+        } finally {
+            setLoading(false)
         }
     };
 

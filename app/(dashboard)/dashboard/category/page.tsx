@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-// import { DashboardWrapper } from "../../_components/dashboardWrapper";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { get } from "@/utils/fetchApi";
 import {
@@ -11,14 +10,11 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-// import { Button } from "@/components/ui/button";
-// import { Plus, Trash2 } from "lucide-react";
-// import { UserModal } from "@/components/customModel/userModal";
-// import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
-// import { useToast } from "@/components/ui/use-toast";
-// import ConfirmationModal from "@/components/customModel/confirmationModal";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 import { ICategory } from "@/utils/dataTypes";
-// import { DashboardWrapper } from "../../_components/dashboardWrapper";
+import { UserModal } from "@/components/customModel/userModal";
+import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
 
 
 
@@ -29,7 +25,7 @@ interface DeletingData {
 
 const CategoryPage = () => {
     //create modal state
-    // const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     // const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     // const [deletingData, setDeletingData] = useState<DeletingData | null>(null);
@@ -89,7 +85,7 @@ const CategoryPage = () => {
         // <DashboardWrapper>
         <div>
             <div className="flex justify-center md:justify-end">
-                {/* <UserModal
+                <UserModal
                     button={
                         <Button className="flex gap-2">
                             <Plus />
@@ -100,7 +96,7 @@ const CategoryPage = () => {
                     setModalOpen={setModalOpen}
                     handleOpen={() => setModalOpen(true)}
                     formComponent={<UploadCategoryForm refetch={refetch} setModalOpen={setModalOpen} />}
-                /> */}
+                />
             </div>
             <p className="font-bold text-xl text-center">Project Category</p>
             <Table>
