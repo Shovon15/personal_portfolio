@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { get } from "@/utils/fetchApi";
+import { del, get, put } from "@/utils/fetchApi";
 import {
     Table,
     TableBody,
@@ -11,10 +11,13 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { ICategory } from "@/utils/dataTypes";
-import { InputModal } from "@/components/customModel/inputModal";
-import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
+// import { InputModal } from "@/components/customModel/inputModal";
+// import { UploadCategoryForm } from "../../_components/form/uploadCategoryForm";
+import { DashboardWrapper } from "../../_components/dashboardWrapper";
+import ConfirmationModal from "@/components/customModel/confirmationModal";
+import { useToast } from "@/components/ui/use-toast";
 
 
 
@@ -27,11 +30,11 @@ const CategoryPage = () => {
     //create modal state
     const [modalOpen, setModalOpen] = useState(false);
 
-    // const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    // const [deletingData, setDeletingData] = useState<DeletingData | null>(null);
-    // console.log(deletingData, "deletingData");
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [deletingData, setDeletingData] = useState<DeletingData | null>(null);
+    console.log(deletingData, "deletingData");
 
-    // const { toast } = useToast();
+    const { toast } = useToast();
 
     const {
         data: categoryData = [] as ICategory[],
@@ -47,34 +50,34 @@ const CategoryPage = () => {
         },
     });
 
-    // const toggleIsEnabled = async ({ _id, isEnabled }: { _id: string, isEnabled: boolean }) => {
-    //     try {
-    //         const updateIsEnabled = !isEnabled;
+    const toggleIsEnabled = async ({ _id, isEnabled }: { _id: string, isEnabled: boolean }) => {
+        try {
+            const updateIsEnabled = !isEnabled;
 
-    //         await put(`/category/${_id}`, { isEnabled: updateIsEnabled });
+            await put(`/category/${_id}`, { isEnabled: updateIsEnabled });
 
-    //         refetch();
-    //         toast({ title: updateIsEnabled ? "Enabled" : "Disabled" });
-    //     } catch (error: any) {
-    //         toast({ title: error.response?.data?.message });
-    //     }
-    // };
+            refetch();
+            toast({ title: updateIsEnabled ? "Enabled" : "Disabled" });
+        } catch (error: any) {
+            toast({ title: error.response?.data?.message });
+        }
+    };
 
-    // const handleDelete = async ({ _id, name }: { _id: string, name: string }) => {
-    //     // console.log(data, "finally---------------------------");
+    const handleDelete = async ({ _id, name }: { _id: string, name: string }) => {
+        // console.log(data, "finally---------------------------");
 
-    //     try {
-    //         const response = await del(`/category/${_id}`);
-    //         refetch();
-    //         toast({ title: response.data.message });
-    //     } catch (error) {
-    //         console.error("Error deleting social support:", error);
-    //         toast({ title: `Error deleting data with Title: ${name}` });
-    //     } finally {
-    //         setDeletingData(null)
-    //         setDeleteModalOpen(false)
-    //     }
-    // };
+        try {
+            const response = await del(`/category/${_id}`);
+            refetch();
+            toast({ title: response.data.message });
+        } catch (error) {
+            console.error("Error deleting social support:", error);
+            toast({ title: `Error deleting data with Title: ${name}` });
+        } finally {
+            setDeletingData(null)
+            setDeleteModalOpen(false)
+        }
+    };
 
     const TABLE_HEAD = ["No.", "Name", "Value", "status", "action"];
 
@@ -82,10 +85,9 @@ const CategoryPage = () => {
         return <div className="flex min-h-screen justify-center items-center">loading...</div>;
     }
     return (
-        // <DashboardWrapper>
-        <div>
+        <DashboardWrapper>
             <div className="flex justify-center md:justify-end">
-                <InputModal
+                {/* <InputModal
                     button={
                         <Button className="flex gap-2">
                             <Plus />
@@ -96,7 +98,7 @@ const CategoryPage = () => {
                     setModalOpen={setModalOpen}
                     handleOpen={() => setModalOpen(true)}
                     formComponent={<UploadCategoryForm refetch={refetch} setModalOpen={setModalOpen} />}
-                />
+                /> */}
             </div>
             <p className="font-bold text-xl text-center">Project Category</p>
             <Table>
@@ -116,7 +118,7 @@ const CategoryPage = () => {
                                 <TableCell>{index + 1}</TableCell>
                                 <TableCell className="font-medium">{name}</TableCell>
                                 <TableCell>{value}</TableCell>
-                                {/* <TableCell>
+                                <TableCell>
                                     {isEnabled ? (
                                         <Button size="sm" onClick={() => toggleIsEnabled({ _id, isEnabled })}>
                                             Enabled
@@ -130,8 +132,8 @@ const CategoryPage = () => {
                                             Disabled
                                         </Button>
                                     )}
-                                </TableCell> */}
-                                {/* <TableCell>
+                                </TableCell>
+                                <TableCell>
                                     <Button
                                         variant="ghost"
                                         className="rounded-full p-2"
@@ -142,12 +144,12 @@ const CategoryPage = () => {
                                     >
                                         <Trash2 className=" text-red-500 cursor-pointer" />
                                     </Button>
-                                </TableCell> */}
+                                </TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
             </Table>
-            {/* {deletingData !== null &&
+            {deletingData !== null &&
                 <ConfirmationModal
                     modalOpen={deleteModalOpen}
                     onClose={() => setDeletingData(null)}
@@ -155,9 +157,9 @@ const CategoryPage = () => {
                     description="Deleting this data is permanent and can not be undone."
                     successAction={handleDelete}
                 />
-            } */}
-            {/* </DashboardWrapper> */}
-        </div >
+            }
+        </DashboardWrapper>
+
     );
 };
 
