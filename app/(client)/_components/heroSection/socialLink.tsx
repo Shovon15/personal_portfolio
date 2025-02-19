@@ -2,7 +2,8 @@
 
 import type React from "react";
 import Link from "next/link";
-import { Github, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
+import { FiGithub } from "react-icons/fi";
 
 type SocialLinkData = {
   title: string;
@@ -14,7 +15,7 @@ const socialData: SocialLinkData[] = [
   {
     title: "github",
     link: "https://github.com/Shovon15",
-    icon: <Github size={30} />,
+    icon: <FiGithub size={30} />,
   },
   {
     title: "linkedin",
