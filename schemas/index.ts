@@ -41,6 +41,11 @@ export const ProjectSchema = z.object({
 	images: z.array(z.instanceof(File)),
 });
 
+export const CvSchema = z.object({
+	link: z.string().min(1, {
+		message: "Cv Link is required",
+	}),
+});
 export const CategorySchema = z.object({
 	categoryName: z.string().min(1, {
 		message: "Category Name is required",

@@ -7,6 +7,12 @@ export interface ICategory {
     value: string;
     isEnabled: boolean;
 }
+export interface ICv {
+    index: number;
+    _id: string;
+    link: string;
+    isEnabled: boolean;
+}
 
 export interface IProject {
     _id: string;

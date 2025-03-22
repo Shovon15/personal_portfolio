@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import heroImage from "../../../../public/images/hero-image.png";
 import { Button } from "@/components/ui/button";
 import SocialLink from "./socialLink";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { get } from "@/utils/fetchApi";
 // import myCv from "../../../../data/"
 type Props = {};
 
@@ -18,6 +19,27 @@ const HeroComponent = (props: Props) => {
     // window.open(pdfUrl, '_blank');
     // console.log("hello")
   };
+
+  const [cvLink, setCvLink] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const fetchProjectData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await get(`/cv/public`);
+      const data = res.data.payload?.data;
+      setCvLink(data?.link || {});
+    } catch (error) {
+      console.error("Error fetching project data:", error);
+      // setProjectError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjectData();
+  }, []);
 
   return (
     <div className="flex flex-col md:flex-row ">
@@ -45,16 +67,13 @@ const HeroComponent = (props: Props) => {
             <Link href="/hire-me">
               <Button className={cn("w-24 bg-primary")}>Hire Me</Button>
             </Link>
-
-            <Button asChild className="w-24">
-              <a
-                href="https://drive.google.com/file/d/11_WE8S_cQaMI1f--cPLs2UhwYoDwXflj/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CV
-              </a>
-            </Button>
+            {cvLink && (
+              <Button asChild className="w-24">
+                <a href={cvLink} target="_blank" rel="noopener noreferrer">
+                  CV
+                </a>
+              </Button>
+            )}
           </div>
         </div>
         <div className="flex justify-center items-center pt-10">
