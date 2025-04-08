@@ -65,7 +65,7 @@ const HeroComponent = (props: Props) => {
           </h1>
           <div className="flex gap-2">
             <Link href="/hire-me">
-              <Button className={cn("w-24 bg-primary")}>Hire Me</Button>
+              <Button className={cn("w-24 bg-primary")}>Let’s Talk</Button>
             </Link>
             {cvLink && (
               <Button asChild className="w-24">
