@@ -1,17 +1,29 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from "react";
+import CategoryButtonGroup from "./components/tabButtonGroup/CategoryButtonGroup";
+import { useDataContext } from "@/context/dataProvider";
+import TabDataGroup from "./components/tabDataGroup/TabDataGroup";
 
-type Props = {}
+type Props = {};
 
 const ProjectPage = (props: Props) => {
-    return (
-        <div className='min-h-screen flex-col gap-5 p-5 md:p-10 temp-class'>
-            <h1 className='text-2xl text-center font-semibold'>Explore Projects</h1>
-            {/* <div className='bg-green-500 h-14'>
-                Category
-            </div> */}
-            <p className='flex justify-center items-center p-5'>coming soon</p>
-        </div>
-    )
-}
+  const { activeTab, setActiveTab, categoryData, projectData } =
+    useDataContext();
+  // console.log(categoryData, projectData, "project data");
 
-export default ProjectPage
+  const handleTabClick = (tab: string) => setActiveTab(tab);
+
+  console.log(typeof activeTab, "activeTab");
+  return (
+    <div className="p-5 md:p-10 w-full h-full relative">
+      <CategoryButtonGroup
+        buttonData={categoryData}
+        handleTabClick={handleTabClick}
+        activeTab={activeTab}
+      />
+      <TabDataGroup projectData={projectData} activeTab={activeTab} />
+    </div>
+  );
+};
+
+export default ProjectPage;

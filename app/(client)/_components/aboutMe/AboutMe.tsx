@@ -6,7 +6,7 @@ type Props = {};
 
 const AboutMe = (props: Props) => {
   return (
-    <div className=" flex flex-col md:flex-row w-full justify-center p-5 md:p-10">
+    <div className=" flex flex-col md:flex-row w-full justify-start p-5 md:p-10">
       <div className="w-full md:w-1/2 rounded-full flex justify-center items-center">
         <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full flex justify-center items-center border-[3px] border-primary">
           <Image

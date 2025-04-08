@@ -7,6 +7,12 @@ export interface ICategory {
     value: string;
     isEnabled: boolean;
 }
+
+export interface ICategoryFromDB extends ICategory {
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  }
 export interface ICv {
     index: number;
     _id: string;

@@ -4,7 +4,7 @@ import ProjectComponent from "./_components/projects/projects";
 
 const ClientPage = () => {
   return (
-    <div className="max-w-screen-2xl mx-auto min-h-screen">
+    <div>
       <HeroComponent />
       <AboutMe />
       <ProjectComponent />

@@ -1,0 +1,93 @@
+/* Wrapper holds the entire button group */
+.category-button-group-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Scroll container includes "All" + Scrollable button list */
+.category-button-scroll-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  padding: 8px 0;
+  cursor: grab;
+  user-select: none;
+}
+
+.category-button-scroll-container.dragging {
+  cursor: grabbing;
+}
+
+/* Scrollable list (the dynamic buttons) */
+.category-scroll-list {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  flex: 1;
+  transition: scroll-left 0.2s ease-out;
+}
+
+/* Disable smooth scroll during active dragging */
+.category-scroll-list.no-smooth {
+  scroll-behavior: auto;
+  transition: none;
+}
+
+/* Momentum scrolling effect */
+.category-scroll-list {
+  will-change: scroll-position;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Hide scrollbar */
+.category-scroll-list::-webkit-scrollbar {
+  display: none;
+}
+.category-scroll-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Cursor states */
+.category-scroll-list {
+  cursor: grab;
+  user-select: none;
+}
+
+.category-scroll-list.dragging {
+  cursor: grabbing;
+}
+
+/* Button styles */
+.category-button {
+  white-space: nowrap;
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.category-button.all {
+  min-width: 60px;
+}
+
+.category-button.single {
+  min-width: 120px;
+}
+
+.category-button:hover {
+  color: white;
+}
