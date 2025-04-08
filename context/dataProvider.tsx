@@ -33,6 +33,7 @@ interface DataContextType {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   projectData: Project[];
+  categoryData: ICategoryFromDB[];
   isProjectDataLoading: boolean;
   // fetchData: () => Promise<void>;
   // logout: () => Promise<void>;
@@ -42,6 +43,7 @@ const initialAuthContext: DataContextType = {
   activeTab: "",
   setActiveTab: () => {},
   projectData: [],
+  categoryData: [],
   isProjectDataLoading: true,
   // logout: async () => { },
 };
