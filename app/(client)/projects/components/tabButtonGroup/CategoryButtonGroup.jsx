@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CategoryButton from "./CategoryButton";
-import "./CategoryButton.css";
+import "./categoryButton.css";
 
 const CategoryButtonGroup = ({ buttonData, handleTabClick, activeTab }) => {
   const scrollRef = useRef(null);
