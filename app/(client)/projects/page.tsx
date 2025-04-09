@@ -7,13 +7,17 @@ import TabDataGroup from "./components/tabDataGroup/TabDataGroup";
 type Props = {};
 
 const ProjectPage = (props: Props) => {
-  const { activeTab, setActiveTab, categoryData, projectData } =
-    useDataContext();
+  const {
+    activeTab,
+    setActiveTab,
+    categoryData,
+    projectData,
+    isProjectDataLoading,
+  } = useDataContext();
   // console.log(categoryData, projectData, "project data");
 
   const handleTabClick = (tab: string) => setActiveTab(tab);
 
-  console.log(typeof activeTab, "activeTab");
   return (
     <div className="p-0 md:p-10 w-full h-full relative">
       <CategoryButtonGroup
@@ -21,7 +25,11 @@ const ProjectPage = (props: Props) => {
         handleTabClick={handleTabClick}
         activeTab={activeTab}
       />
-      <TabDataGroup projectData={projectData} activeTab={activeTab} />
+      <TabDataGroup
+        projectData={projectData}
+        activeTab={activeTab}
+        isLoading={isProjectDataLoading}
+      />
     </div>
   );
 };
