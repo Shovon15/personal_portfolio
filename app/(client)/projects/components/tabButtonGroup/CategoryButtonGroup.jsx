@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import CategoryButton from "./CategoryButton";
 import "./categoryButton.css";
+import { useTheme } from "next-themes";
 
 const CategoryButtonGroup = ({ buttonData, handleTabClick, activeTab }) => {
   const scrollRef = useRef(null);
@@ -12,6 +13,11 @@ const CategoryButtonGroup = ({ buttonData, handleTabClick, activeTab }) => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [velocity, setVelocity] = useState(0);
   const animationRef = useRef(null);
+
+  const { theme, systemTheme } = useTheme();
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+  const backgroundColor = currentTheme === "dark" ? "#020817" : "#fff";
 
   // Smooth scroll animation
   const smoothScroll = () => {
@@ -77,7 +83,10 @@ const CategoryButtonGroup = ({ buttonData, handleTabClick, activeTab }) => {
   }, [isDragging, startX, scrollLeft, velocity]);
 
   return (
-    <div className="category-button-group-wrapper">
+    <div
+      className="category-button-group-wrapper"
+      style={{ backgroundColor: backgroundColor }}
+    >
       <div
         ref={scrollRef}
         className={`category-button-scroll-container ${

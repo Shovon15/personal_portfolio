@@ -1,10 +1,14 @@
 /* Wrapper holds the entire button group */
 .category-button-group-wrapper {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 0px auto;
+  padding: 0px 10px;
+  border-radius: 10px;
   position: sticky;
-  top: 0;
+  top: 65px;
   z-index: 10;
+  /* background-color: black; */
+  opacity: 40;
 }
 
 /* Scroll container includes "All" + Scrollable button list */

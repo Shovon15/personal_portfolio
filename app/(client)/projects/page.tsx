@@ -15,7 +15,7 @@ const ProjectPage = (props: Props) => {
 
   console.log(typeof activeTab, "activeTab");
   return (
-    <div className="p-5 md:p-10 w-full h-full relative">
+    <div className="p-0 md:p-10 w-full h-full relative">
       <CategoryButtonGroup
         buttonData={categoryData}
         handleTabClick={handleTabClick}
