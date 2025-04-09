@@ -13,7 +13,7 @@ import {
   RefetchOptions,
   useQuery,
 } from "@tanstack/react-query";
-import { ICategoryFromDB } from "@/utils/dataTypes";
+import { ICategoryFromDB, IProject } from "@/utils/dataTypes";
 
 interface DataProviderProps {
   children: ReactNode;
@@ -21,6 +21,8 @@ interface DataProviderProps {
 
 export interface Project {
   _id: string;
+  title: string;
+  slug: string;
   name: string;
   link: string;
   images: string[];
@@ -32,7 +34,7 @@ export interface Project {
 interface DataContextType {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  projectData: Project[];
+  projectData: IProject[];
   categoryData: ICategoryFromDB[];
   isProjectDataLoading: boolean;
   // fetchData: () => Promise<void>;
