@@ -62,7 +62,7 @@ const ClientMobileSidebar = (props: Props) => {
                 </div>
               ))}
             </div>
-            <div className=" pt-10">
+            <div className="pt-10 pr-10">
               <MobileThemeToggle />
             </div>
           </ScrollArea>

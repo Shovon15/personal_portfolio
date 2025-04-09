@@ -67,11 +67,15 @@ const HeroComponent = (props: Props) => {
             <Link href="/hire-me">
               <Button className={cn("w-24 bg-primary")}>Let’s Talk</Button>
             </Link>
-            {cvLink && (
+            {cvLink ? (
               <Button asChild className="w-24">
                 <a href={cvLink} target="_blank" rel="noopener noreferrer">
                   CV
                 </a>
+              </Button>
+            ) : (
+              <Button asChild className="w-24" disabled>
+                <p>CV</p>
               </Button>
             )}
           </div>

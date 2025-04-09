@@ -1,7 +1,7 @@
 "use client"
 
 import { DashboardWrapper } from '@/app/(dashboard)/_components/dashboardWrapper';
-import { UpdateProjectForm } from '@/app/(dashboard)/_components/form/updateProjectForm';
+import { UpdateProjectForm } from '@/app/(dashboard)/_components/form/UpdateProjectForm';
 import { CustomPageSpinner } from '@/utils/customPageSpinner';
 import { get } from '@/utils/fetchApi';
 import React, { useEffect, useState } from 'react'
